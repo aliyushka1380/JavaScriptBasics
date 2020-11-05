@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use scrict';
+        /*1. С помощью цикла while вывести все простые числа (это числа больше 1, делящиеся без остатка только на 1 и на само себя) в промежутке от 0 до 100.*/
+        var i = 1;
+        var n = 100;
+        while (i < n) {
+            if (myResult(i)) {
+                console.log(i);  //выводим простое число
+            }
+            i++;
+        }
+
+        function myResult(x) {
+            if (x < 2) {
+                return false;  //число должно быть больше 1
+            }
+
+            // Перебираем числа с 2 до корня числа (выше точно не будет делителя), которое проверяем.
+            for (let i = 2; i <= Math.sqrt(x); i++) {  //проверка до корня числа
+                if (x % i === 0) {
+                    return false;   //число делится, не подходит
+                }
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>
