@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use scrict';
+        /*2. Для игры, реализованной на уроке, добавить возможность вывода хода номер n (номер задается пользователем)*/
+
+
+        const config = {
+            rowCount: 10,
+            colCount: 10,
+            startPositionX: 0,
+            startPositionY: 0
+        };
+
+        const player = {
+            x: null,
+            y: null,
+            pointMove: [1],
+            positionX: [],
+            positionY: [],
+
+            init(startX, startY) {
+                this.x = startX;
+                this.y = startY;
+            },
+
+            move(direction) {
+                switch (direction) {
+                    case 2:
+                        this.y++;
+                        break;
+                    case 4:
+                        this.x--;
+                        break;
+                    case 6:
+                        this.x++;
+                        break;
+                    case 8:
+                        this.y--;
+                        break;
+                    case 0:
+                        let pointMove = +prompt('Введите номер хода');
+                        this.x = this.positionX[pointMove - 1];
+                        this.y = this.positionY[pointMove - 1];
+                        break;
+                }
+            },
+
+
+        };
+
+        const game = {
+            settigs: config,
+            player,
+
+            run() {
+                this.player.init(this.settigs.startPositionX, this.settigs.startPositionY);
+                while (true) {
+                    this.render();
+
+                    const direction = this.getDirection();
+
+                    if (direction === -1) {
+                        return alert('До свидания!');
+                    }
+                    this.player.move(direction);
+                }
+            },
+
+            render() {
+                let map = '';
+
+                for (let row = 0; row < this.settigs.rowCount; row++) {
+                    for (let col = 0; col < this.settigs.colCount; col++) {
+                        if (this.player.y === row && this.player.x === col) {
+                            map += 'O ';
+                            player.pointMove.push(player.pointMove.length + 1);
+                            player.positionY.push(player.y);
+                            player.positionX.push(player.x);
+                        } else {
+                            map += 'X ';
+                        }
+                    }
+                    map += '\n';
+                }
+                console.clear();
+                console.log(map);
+
+
+            },
+
+            getDirection() {
+                const availableDirections = [-1, 2, 4, 6, 8, 0];
+
+                while (true) {
+                    const direction = +prompt('Введите число, куда хотите переместиться, -1 для выхода, либо 0 для отображения хода');
+                    try {
+                        if (!availableDirections.includes(direction)) throw new Error(`'Для перемещения необходимо ввести одно из чисел ${availableDirections.join(', ')}'`);
+                    }
+                    catch (e) {
+                        console.log(e.message);
+                        continue;
+                    }
+
+                    return direction;
+                }
+            },
+
+        };
+
+        game.run();
+    </script>
+</body>
+
+</html>
