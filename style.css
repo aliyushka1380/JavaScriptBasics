@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+img {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+}
+.delete {
+    background: red;
+}
+.delete:hover {
+    background: darkred;
+}
+.buy {
+    background: chartreuse;
+}
+.buy:hover {
+    background: green;
+}
+.prod__header {
+    font-size: 30px;
+}
+.prod__price {
+    font-size: 20px;
+}
+.minus, .quan, .plus {
+    display: inline;
+  }
